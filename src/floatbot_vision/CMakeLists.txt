@@ -8,6 +8,7 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(camera_ros REQUIRED)
+find_package(apriltag_ros REQUIRED)
 
 # uncomment the following section in order to fill in
 # further dependencies manually.
