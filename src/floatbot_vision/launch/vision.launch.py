@@ -27,6 +27,20 @@ def generate_launch_description():
             extra_arguments = [{
                 'use_intra_process_comms': True
             }]
+        ),
+
+        # rectifier node
+        ComposableNode(
+            package = 'image_proc',
+            plugin = 'image_proc::RectifyNode',
+            name = 'rectifier',
+            namespace = camera_ns,
+            remappings = [
+                ('image', 'image_raw')
+            ],
+            extra_arguments=[{
+                'use_intra_process_coms': True
+            }]
         )
     ]
 
