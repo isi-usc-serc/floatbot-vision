@@ -24,7 +24,9 @@ def generate_launch_description():
             plugin = 'camera::CameraNode',
             name = camera_ns,
             parameters = [{
-                'frame_id': camera_ns
+                'frame_id': camera_ns,
+                'width': 1920,
+                'height': 1080
             }],
             extra_arguments = [{
                 'use_intra_process_comms': True
@@ -52,7 +54,7 @@ def generate_launch_description():
         ComposableNode(
             package = 'apriltag_ros',
             plugin = 'AprilTagNode',
-            name = 'apriltag',
+            name = 'apriltag_detector',
             namespace = camera_ns,
             parameters = [
                 PathJoinSubstitution([FindPackageShare('floatbot_vision'), 'cfg', 'tags_floatbot.yaml'])
@@ -69,12 +71,13 @@ def generate_launch_description():
     # create vision pipeline container
     ld.add_action(
         ComposableNodeContainer(
-            name='vision_pipeline',
-            package='rclcpp_components',
-            namespace=camera_ns,
-            executable='component_container',
-            composable_node_descriptions=vision_nodes
+            name = 'vision_pipeline',
+            package = 'rclcpp_components',
+            executable = 'component_container_mt',
+            namespace = camera_ns,
+            composable_node_descriptions = vision_nodes
         )
     )
-    
+
+    # complete launch description
     return ld
