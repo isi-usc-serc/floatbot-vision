@@ -37,6 +37,9 @@ def generate_launch_description():
             plugin = 'image_proc::RectifyNode',
             name = 'rectifier',
             namespace = camera_ns,
+            parameters=[{
+                'image_transport': 'compressed'
+            }],
             remappings = [
                 ('image', 'image_raw')
             ],
