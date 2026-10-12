@@ -1,6 +1,8 @@
 from launch import LaunchDescription
+from launch.substitutions import PathJoinSubstitution
 from launch_ros.actions import ComposableNodeContainer
 from launch_ros.descriptions import ComposableNode
+from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
     '''
@@ -40,6 +42,23 @@ def generate_launch_description():
             ],
             extra_arguments=[{
                 'use_intra_process_coms': True
+            }]
+        ),
+
+        # apriltag node
+        ComposableNode(
+            package = 'apriltag_ros',
+            plugin = 'AprilTagNode',
+            name = 'apriltag',
+            namespace = camera_ns,
+            parameters = [
+                PathJoinSubstitution([FindPackageShare('floatbot_vision'), 'cfg', 'tags_floatbot.yaml'])
+            ],
+            remappings = [
+                ('detections', 'tags')
+            ],
+            extra_arguments = [{
+                'use_intra_process_comms': True
             }]
         )
     ]

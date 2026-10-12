@@ -18,7 +18,7 @@ find_package(image_pipeline REQUIRED)
 
 # install folders
 install(
-  DIRECTORY launch
+  DIRECTORY launch cfg
   DESTINATION share/${PROJECT_NAME}
 )
 
