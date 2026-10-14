@@ -1,6 +1,6 @@
 from launch import LaunchDescription
 from launch.substitutions import PathJoinSubstitution
-from launch_ros.actions import ComposableNodeContainer
+from launch_ros.actions import Node, ComposableNodeContainer
 from launch_ros.descriptions import ComposableNode
 from launch_ros.substitutions import FindPackageShare
 
@@ -76,6 +76,21 @@ def generate_launch_description():
             executable = 'component_container_mt',
             namespace = camera_ns,
             composable_node_descriptions = vision_nodes
+        )
+    )
+
+    # camera transform publisher
+    ld.add_action(
+        Node(
+            package = 'tf2_ros',
+            executable = 'static_transform_publisher',
+            name = 'transform_publisher',
+            namespace = camera_ns,
+            arguments = [
+                '--x', '0', '--y', '0', '--z', '2.13',
+                '--yaw', '0', '--pitch', '0', '--roll', '3.14159',
+                '--frame-id', 'world', '--child-frame-id', camera_ns
+            ]
         )
     )
 
