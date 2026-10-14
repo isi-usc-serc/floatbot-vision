@@ -12,7 +12,7 @@ echo "Detected Ubuntu ($UBUNTU_CODENAME). Preparing to install ROS2 ($ROS_DISTRO
 
 # STEP 2: Set of system locale
 echo "Configuring system locale..."
-sudo apt update && sudo apt install locales
+sudo apt update && sudo apt install -y locales
 sudo locale-gen en_US en_US.UTF-8
 sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -31,8 +31,9 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install -y "ros-${ROS_DISTRO}-ros-base"
 
-# STEP 5: Install and initilize ROSDEP
-sudo apt update && sudo apt install -y python3-rosdep
+# STEP 5: Install ROS2 dev tools
+echo "Installing ROS2 dev tools..."
+sudo apt update && sudo apt install -y python3-rosdep ros-dev-tools
 if [ ! -f /etc/ros/rosdep/sources.list.d/20-default.list ]; then
     sudo rosdep init
 fi
