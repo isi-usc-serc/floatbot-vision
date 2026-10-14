@@ -1,0 +1,28 @@
+image_width: 1920
+image_height: 1080
+camera_name: Spedal4KCamera_Spedal4KCam__base_axi_pcie_120000_rp1_usb_200000_1_1_1_1_0_3631_c002_1920x1080
+camera_matrix:
+  rows: 3
+  cols: 3
+  data: [825.81133761109288, 0, 938.20830105942048, 0, 825.27150888689187, 541.67550033454484, 0, 0, 1]
+distortion_model: plumb_bob
+distortion_coefficients:
+  rows: 1
+  cols: 5
+  data: [-0.078519954172390632, 0.0077854001584004694, -0.0050853484270476325, -0.0049408390660363429, 0]
+rectification_matrix:
+  rows: 3
+  cols: 3
+  data: [1, 0, 0, 0, 1, 0, 0, 0, 1]
+projection_matrix:
+  rows: 3
+  cols: 4
+  data: [730.70361328125, 0, 905.96055538096698, 0, 0, 795.660888671875, 535.08532619486505, 0, 0, 0, 1, 0]
+binning_x: 0
+binning_y: 0
+roi:
+  x_offset: 0
+  y_offset: 0
+  height: 0
+  width: 0
+  do_rectify: false
