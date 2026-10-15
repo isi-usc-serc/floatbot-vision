@@ -25,8 +25,8 @@ def generate_launch_description():
             name = camera_ns,
             parameters = [{
                 'frame_id': camera_ns,
-                'width': 1920,
-                'height': 1080
+                'width': 1280,
+                'height': 720
             }],
             extra_arguments = [{
                 'use_intra_process_comms': True
@@ -58,9 +58,6 @@ def generate_launch_description():
             namespace = camera_ns,
             parameters = [
                 PathJoinSubstitution([FindPackageShare('floatbot_vision'), 'cfg', 'tags_floatbot.yaml'])
-            ],
-            remappings = [
-                ('detections', 'tags')
             ],
             extra_arguments = [{
                 'use_intra_process_comms': True
