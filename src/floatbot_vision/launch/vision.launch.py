@@ -1,6 +1,6 @@
 from launch import LaunchDescription
 from launch.substitutions import PathJoinSubstitution
-from launch_ros.actions import ComposableNodeContainer
+from launch_ros.actions import Node, ComposableNodeContainer
 from launch_ros.descriptions import ComposableNode
 from launch_ros.substitutions import FindPackageShare
 
@@ -25,8 +25,8 @@ def generate_launch_description():
             name = camera_ns,
             parameters = [{
                 'frame_id': camera_ns,
-                'width': 1920,
-                'height': 1080
+                'width': 1280,
+                'height': 720
             }],
             extra_arguments = [{
                 'use_intra_process_comms': True
@@ -59,9 +59,6 @@ def generate_launch_description():
             parameters = [
                 PathJoinSubstitution([FindPackageShare('floatbot_vision'), 'cfg', 'tags_floatbot.yaml'])
             ],
-            remappings = [
-                ('detections', 'tags')
-            ],
             extra_arguments = [{
                 'use_intra_process_comms': True
             }]
@@ -76,6 +73,21 @@ def generate_launch_description():
             executable = 'component_container_mt',
             namespace = camera_ns,
             composable_node_descriptions = vision_nodes
+        )
+    )
+
+    # camera transform publisher
+    ld.add_action(
+        Node(
+            package = 'tf2_ros',
+            executable = 'static_transform_publisher',
+            name = 'transform_publisher',
+            namespace = camera_ns,
+            arguments = [
+                '--x', '0', '--y', '0', '--z', '2.13',
+                '--yaw', '0', '--pitch', '0', '--roll', '3.14159',
+                '--frame-id', 'world', '--child-frame-id', camera_ns
+            ]
         )
     )
 
