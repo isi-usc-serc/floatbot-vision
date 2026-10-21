@@ -24,7 +24,7 @@ def generate_launch_description():
             plugin = 'camera::CameraNode',
             name = camera_ns,
             parameters = [{
-                'frame_id': camera_ns,
+                'frame_id': camera_ns + '_frame',
                 'width': 1280,
                 'height': 720
             }],
@@ -86,7 +86,7 @@ def generate_launch_description():
             arguments = [
                 '--x', '0', '--y', '0', '--z', '2.13',
                 '--yaw', '0', '--pitch', '0', '--roll', '3.14159',
-                '--frame-id', 'map', '--child-frame-id', camera_ns
+                '--frame-id', 'map', '--child-frame-id', camera_ns + '_frame'
             ]
         )
     )
