@@ -84,7 +84,7 @@ def generate_launch_description():
             name = 'transform_publisher',
             namespace = camera_ns,
             arguments = [
-                '--x', '0', '--y', '0', '--z', '2.13',
+                '--x', '0', '--y', '0', '--z', '2.125',
                 '--yaw', '0', '--pitch', '0', '--roll', '3.14159',
                 '--frame-id', 'map', '--child-frame-id', camera_ns + '_frame'
             ]
